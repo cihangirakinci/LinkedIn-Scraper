@@ -29,6 +29,7 @@ Metrics/MethodLength:
   Exclude:
     - bin/bundle
 Metrics/AbcSize:
+  Max: 20
   Exclude:
   - bin/bundle
 Metrics/PerceivedComplexity:

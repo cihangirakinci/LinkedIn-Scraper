@@ -1,0 +1,58 @@
+Metrics/BlockLength:
+  Max: 90
+  Exclude:
+    - Guardfile
+    - db/schema.rb
+Style/Documentation:
+  Enabled: false
+Layout/LineLength:
+  Max: 150
+  Exclude:
+    - spec/spec_helper.rb
+    - db/seeds.rb
+    - config/puma.rb
+    - db/schema.rb
+    - config/environments/production.rb
+    - config/environments/test.rb
+    - config/initializers/backtrace_silencers.rb
+    - config/initializers/content_security_policy.rb
+    - bin/setup
+    - config/application.rb
+    - config/environments/development.rb
+    - config/initializers/wrap_parameters.rb
+    - spec/rails_helper.rb
+    - Rakefile
+    - bin/rspec
+    - bin/bundle
+Metrics/MethodLength:
+  Max: 15
+  Exclude:
+    - bin/bundle
+Metrics/AbcSize:
+  Exclude:
+  - bin/bundle
+Metrics/PerceivedComplexity:
+  Exclude:
+  - bin/bundle
+Metrics/CyclomaticComplexity:
+  Exclude:
+  - bin/bundle
+Style/CommentedKeyword:
+  Exclude:
+  - bin/bundle
+Style/HashEachMethods:
+  Enabled: true
+Style/HashTransformValues:
+  Enabled: true
+Style/HashTransformKeys:
+  Enabled: true
+Style/IfUnlessModifier:
+  Exclude:
+    - bin/bundle
+    - spec/rails_helper.rb
+Style/MixinUsage:
+  Exclude:
+    - spec/system/topics_page_spec.rb
+Style/ClassAndModuleChildren:
+  Enabled: false
+

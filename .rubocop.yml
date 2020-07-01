@@ -25,11 +25,11 @@ Layout/LineLength:
     - bin/rspec
     - bin/bundle
 Metrics/MethodLength:
-  Max: 15
+  Max: 20
   Exclude:
     - bin/bundle
 Metrics/AbcSize:
-  Max: 20
+  Max: 30
   Exclude:
   - bin/bundle
 Metrics/PerceivedComplexity:

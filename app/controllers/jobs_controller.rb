@@ -18,16 +18,22 @@ class JobsController < ApplicationController
 
     job_titles = driver.find_elements(class: 'result-card__title')
     job_links = driver.find_elements(class: 'result-card__full-card-link')
+    company_names = driver.find_elements(class: 'result-card__subtitle-link')
 
     job_titles.length.times do |i|
       job = Job.new
-      next if job_titles[i].text.include?('Senior') || job_titles[i].text.include?('Sr') || job_titles[i].text.include?('Lead')
+      next if job_titles[i].text.include?('Senior') || job_titles[i].text.include?('Sr') || job_titles[i].text.include?('Lead') || job_titles[i].text.include?('Director')
 
       job.title = job_titles[i].text
       job.link = job_links[i].attribute('href')
+      job.company = company_names[i].text
       @browser = Capybara::Session.new(:selenium_chrome_headless)
       @browser.visit(job.link)
-      @desc = @browser.find('.show-more-less-html__markup')['innerHTML']
+      if @browser.find('.show-more-less-html__markup')['innerHTML'].nil?
+        next
+      else
+        @desc = @browser.find('.show-more-less-html__markup')['innerHTML']
+      end
       job.description = @desc
 
       job.save!

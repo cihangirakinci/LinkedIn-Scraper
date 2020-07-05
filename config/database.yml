@@ -80,6 +80,6 @@ test:
 #
 production:
   <<: *default
-  database: linkedinscraper_production
-  username: linkedinscraper
-  password: <%= ENV['LINKEDINSCRAPER_DATABASE_PASSWORD'] %>
+  database: <%= ENV['DATABASE_URL'] %>
+  #username: linkedinscraper
+  #password: <%= ENV['LINKEDINSCRAPER_DATABASE_PASSWORD'] %>

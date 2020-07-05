@@ -5,8 +5,11 @@ Metrics/BlockLength:
     - db/schema.rb
 Style/Documentation:
   Enabled: false
+Style/GuardClause:
+  Exclude:
+  - app/controllers/jobs_controller.rb
 Layout/LineLength:
-  Max: 150
+  Max: 170
   Exclude:
     - spec/spec_helper.rb
     - db/seeds.rb
@@ -25,17 +28,19 @@ Layout/LineLength:
     - bin/rspec
     - bin/bundle
 Metrics/MethodLength:
-  Max: 20
+  Max: 30
   Exclude:
     - bin/bundle
 Metrics/AbcSize:
-  Max: 30
+  Max: 50
   Exclude:
   - bin/bundle
 Metrics/PerceivedComplexity:
   Exclude:
   - bin/bundle
+  - app/controllers/jobs_controller.rb
 Metrics/CyclomaticComplexity:
+  Max: 30
   Exclude:
   - bin/bundle
 Style/CommentedKeyword:
@@ -51,6 +56,7 @@ Style/IfUnlessModifier:
   Exclude:
     - bin/bundle
     - spec/rails_helper.rb
+    - app/controllers/jobs_controller.rb
 Style/MixinUsage:
   Exclude:
     - spec/system/topics_page_spec.rb

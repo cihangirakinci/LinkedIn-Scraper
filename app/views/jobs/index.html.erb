@@ -1,5 +1,5 @@
 <div id="typography" class="container mb-5">
-    <div class="section-title col-lg-12 col-md-10 ml-auto mr-auto">
+    <div class="section-title col-xl-12 col-md-10 ml-auto mr-auto">
         <div class="example col-md-10 ml-auto mr-auto">
             <div class = "pt-5">
             
@@ -8,6 +8,7 @@
                     <thead class="thead-dark">
                         <tr>
                             <th colspan='1' style="text-align:center;">Job Title</th>
+                            <th colspan='1' style="text-align:center; white-space: nowrap;">List Date</th>
                             <th colspan='1' style="text-align:center;">Company</th>
                             <th colspan='1' style="text-align:center;">Link</th>
                         </tr>
@@ -41,6 +42,9 @@
                                     </div>
                                 </td>
                                 <td colspan='1' style="text-align:center;">
+                                    <h6><%= job.date %></h6>
+                                </td>
+                                <td colspan='1' style="text-align:center;">
                                     <h6><%= job.company %></h6>
                                 </td>
                                 <td colspan='1' style="text-align:center;">
@@ -50,7 +54,7 @@
                         <% end %>
                     </tbody>
                 </table>
-                <%= link_to 'Search', new_job_path %>
+                <p style="text-align:center; margin-top:50px"><%= link_to 'Start New Search', new_job_path, class: "btn btn-warning"%></p>
             </div>
         </div>
     </div>

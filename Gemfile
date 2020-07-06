@@ -21,7 +21,10 @@ gem 'turbolinks', '~> 5'
 gem 'bootstrap', '~> 4.5.0'
 gem 'jbuilder', '~> 2.7'
 gem 'jquery-rails'
-gem 'selenium-webdriver'
+gem 'selenium-webdriver', '~> 3.142', '>= 3.142.7'
+gem 'capybara', '~> 3.33'
+gem 'nokogiri', '~> 1.6', '>= 1.6.8'
+
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 4.0'
 # Use Active Model has_secure_password
@@ -49,8 +52,6 @@ end
 
 group :test do
   # Adds support for Capybara system testing and selenium driver
-  gem 'capybara', '>= 2.15'
-  gem 'selenium-webdriver'
   # Easy installation and use of web drivers to run system tests with browsers
   gem 'webdrivers'
 end

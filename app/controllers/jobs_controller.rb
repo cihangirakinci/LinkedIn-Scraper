@@ -11,8 +11,8 @@ class JobsController < ApplicationController
 
   def new
     Job.destroy_all
-    #options = Selenium::WebDriver::Chrome::Options.new(args: ['-headless'])
-    driver = Selenium::WebDriver.for :chrome#, options: options
+    options = Selenium::WebDriver::Chrome::Options.new(args: ['-headless'])
+    driver = Selenium::WebDriver.for :chrome, options: options
 
     driver.get('https://www.linkedin.com/jobs/search?keywords=%22ruby%20On%20Rails%22&trk=public_jobs_jobs-search-bar_search-submit&redirect=false&position=1&pageNum=0&f_TP=1')
 
@@ -32,7 +32,7 @@ class JobsController < ApplicationController
       # byebug
       job.date = (list_date[i].text || '')
 
-      @browser = Capybara::Session.new(:selenium_chrome)
+      @browser = Capybara::Session.new(:selenium_chrome_headless)
       @browser.visit(job.link)
 
       if @browser.find('.show-more-less-html__markup')['innerHTML']

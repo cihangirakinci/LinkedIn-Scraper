@@ -8,6 +8,7 @@ Style/Documentation:
 Style/GuardClause:
   Exclude:
   - app/controllers/jobs_controller.rb
+  - app/controllers/job_searches_controller.rb
 Layout/LineLength:
   Max: 170
   Exclude:

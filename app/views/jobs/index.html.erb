@@ -11,6 +11,7 @@
                             <th colspan='1' style="text-align:center; white-space: nowrap;">List Date</th>
                             <th colspan='1' style="text-align:center;">Company</th>
                             <th colspan='1' style="text-align:center;">Link</th>
+                            <th colspan='1' style="text-align:center;">Action</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -50,11 +51,14 @@
                                 <td colspan='1' style="text-align:center;">
                                     <h5><%= link_to image_tag("linkedin.png"), job.link, target: :_blank %></h5>
                                 </td>
+                                <td colspan='1' style="text-align:center;">
+                                    <h5><%= link_to 'Delete', job, class: "badge badge-danger", method: :delete, data: { confirm: "Are you sure?" } %></h5>
+                                </td>
                             </tr>
                         <% end %>
                     </tbody>
                 </table>
-                <p style="text-align:center; margin-top:50px"><%= link_to 'Start New Search', new_job_path, class: "btn btn-warning"%></p>
+                <p style="text-align:center; margin-top:50px"><%= link_to 'Start New Search', new_job_path, class: "btn btn-warning"%>  |  <%= link_to 'Delete All', jobs_path, class: "btn btn-danger"%></p>
             </div>
         </div>
     </div>

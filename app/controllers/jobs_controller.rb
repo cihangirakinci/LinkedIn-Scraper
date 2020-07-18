@@ -11,8 +11,9 @@ class JobsController < ApplicationController
   end
 
   def new
-    Job.destroy_all
-    driver = Selenium::WebDriver.for :chrome
+    job = Job.new
+    options = Selenium::WebDriver::Chrome::Options.new(args: ['-headless'])
+    driver = Selenium::WebDriver.for :chrome, options: options
 
     driver.get('https://www.linkedin.com/jobs/search?keywords=%22ruby%20On%20Rails%22&trk=public_jobs_jobs-search-bar_search-submit&redirect=false&position=1&pageNum=0&f_TP=1')
 
@@ -21,7 +22,7 @@ class JobsController < ApplicationController
     company_names = driver.find_elements(class: 'result-card__subtitle-link')
     list_date = driver.find_elements(class: 'job-result-card__listdate--new')
     job_titles.length.times do |i|
-      job = Job.new
+      
       if job_titles[i].text.include?('Senior') || job_titles[i].text.include?('Sr') || job_titles[i].text.include?('Lead') || job_titles[i].text.include?('Director')
         next
       end
@@ -29,10 +30,13 @@ class JobsController < ApplicationController
       job.title = job_titles[i].text
       job.link = job_links[i].attribute('href')
       job.company = company_names[i].text
-      # byebug
-      job.date = (list_date[i].text || '')
+      if list_date[i].text
+        job.date = list_date[i].text
+      elsif ''
+        job.date = ''
+      end
 
-      @browser = Capybara::Session.new(:selenium_chrome)
+      @browser = Capybara::Session.new(:selenium_chrome_headless)
       @browser.visit(job.link)
 
       if @browser.find('.show-more-less-html__markup')['innerHTML']
@@ -45,4 +49,10 @@ class JobsController < ApplicationController
       job.save!
     end
   end
+
+  def destroy
+    @job = Job.find(params[:id])
+    @job.destroy
+    redirect_to root_url
+  end 
 end

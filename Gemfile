@@ -24,6 +24,7 @@ gem 'jbuilder', '~> 2.7'
 gem 'jquery-rails'
 gem 'nokogiri', '~> 1.6', '>= 1.6.8'
 gem 'selenium-webdriver', '~> 3.142', '>= 3.142.7'
+gem 'faraday'
 
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 4.0'

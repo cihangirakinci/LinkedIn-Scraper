@@ -9,7 +9,6 @@ require 'date'
 
 class JobSearchesController < ApplicationController
   def new
-    job = Job.new
 
     options = Selenium::WebDriver::Chrome::Options.new(args: ['-headless'])
     driver = Selenium::WebDriver.for :chrome, options: options
@@ -20,22 +19,28 @@ class JobSearchesController < ApplicationController
     job_links = driver.find_elements(class: 'result-card__full-card-link')
     company_names = driver.find_elements(class: 'result-card__subtitle-link')
     job_titles.length.times do |i|
+      job = Job.new
       next if job_titles[i].text.include?('Senior') || job_titles[i].text.include?('Sr') || job_titles[i].text.include?('Lead') || job_titles[i].text.include?('Director')
 
       job.title = job_titles[i].text
       job.link = job_links[i].attribute('href')
-      job.company = company_names[i].text
 
-      @browser = Capybara::Session.new(:selenium_chrome_headless)
-      @browser.visit(job.link)
-
-      if @browser.find('.show-more-less-html__markup')['innerHTML']
-        @desc = @browser.find('.show-more-less-html__markup')['innerHTML']
+      if company_names[i]
+        job.company = company_names[i].text
       else
         next
       end
 
-      job.description = @desc
+      browser = Capybara::Session.new(:selenium_chrome_headless)
+      browser.visit(job.link)
+
+      if browser.find('.show-more-less-html__markup')['innerHTML']
+        desc = browser.find('.show-more-less-html__markup')['innerHTML']
+      else
+        next
+      end
+
+      job.description = desc
       job.date = Date.today
       job.save!
     end

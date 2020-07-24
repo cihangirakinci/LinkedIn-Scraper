@@ -31,12 +31,14 @@
                                                 </div>
                                                 <div class="modal-body">
                                                     <%= job.description.html_safe %>
+                                                    <br><br>
+                                                    <p>Job Post Date:
+                                                    <%= job.date %></p>
                                                 </div>
                                                 <div class="modal-footer">
                                                     <h6>Link:<%= link_to image_tag("linkedin.png"), job.link, target: :_blank %></h6>
                                                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                                                     <button type="button" class="btn btn-primary">Save changes</button>
-                                                </div>
                                                 </div>
                                             </div>
                                         </div>

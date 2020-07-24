@@ -3,14 +3,13 @@
 require 'selenium-webdriver'
 require 'nokogiri'
 require 'capybara'
+require 'open-uri'
+require 'active_support/core_ext/date'
+require 'date'
 
-class JobsController < ApplicationController
-  def index
-    @jobs = Job.all
-  end
-
+class JobSearchesController < ApplicationController
   def new
-    Job.destroy_all
+
     options = Selenium::WebDriver::Chrome::Options.new(args: ['-headless'])
     driver = Selenium::WebDriver.for :chrome, options: options
 
@@ -19,30 +18,32 @@ class JobsController < ApplicationController
     job_titles = driver.find_elements(class: 'result-card__title')
     job_links = driver.find_elements(class: 'result-card__full-card-link')
     company_names = driver.find_elements(class: 'result-card__subtitle-link')
-    list_date = driver.find_elements(class: 'job-result-card__listdate--new')
     job_titles.length.times do |i|
       job = Job.new
-      if job_titles[i].text.include?('Senior') || job_titles[i].text.include?('Sr') || job_titles[i].text.include?('Lead') || job_titles[i].text.include?('Director')
-        next
-      end
+      next if job_titles[i].text.include?('Senior') || job_titles[i].text.include?('Sr') || job_titles[i].text.include?('Lead') || job_titles[i].text.include?('Director')
 
       job.title = job_titles[i].text
       job.link = job_links[i].attribute('href')
-      job.company = company_names[i].text
-      # byebug
-      job.date = (list_date[i].text || '')
 
-      @browser = Capybara::Session.new(:selenium_chrome_headless)
-      @browser.visit(job.link)
-
-      if @browser.find('.show-more-less-html__markup')['innerHTML']
-        @desc = @browser.find('.show-more-less-html__markup')['innerHTML']
+      if company_names[i]
+        job.company = company_names[i].text
       else
         next
       end
-      job.description = @desc
 
+      browser = Capybara::Session.new(:selenium_chrome_headless)
+      browser.visit(job.link)
+
+      if browser.find('.show-more-less-html__markup')['innerHTML']
+        desc = browser.find('.show-more-less-html__markup')['innerHTML']
+      else
+        next
+      end
+
+      job.description = desc
+      job.date = Date.today
       job.save!
+       
     end
     redirect_to root_url
   end

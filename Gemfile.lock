@@ -213,15 +213,16 @@ DEPENDENCIES
   bootsnap (>= 1.4.2)
   bootstrap (~> 4.5.0)
   byebug
-  capybara (>= 2.15)
+  capybara (~> 3.33)
   jbuilder (~> 2.7)
   jquery-rails
   listen (~> 3.2)
+  nokogiri (~> 1.6, >= 1.6.8)
   pg (>= 0.18, < 2.0)
   puma (~> 4.1)
   rails (~> 6.0.3, >= 6.0.3.2)
   sass-rails (>= 6)
-  selenium-webdriver
+  selenium-webdriver (~> 3.142, >= 3.142.7)
   spring
   spring-watcher-listen (~> 2.0.0)
   turbolinks (~> 5)

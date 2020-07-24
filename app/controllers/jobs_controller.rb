@@ -3,11 +3,15 @@
 require 'selenium-webdriver'
 require 'nokogiri'
 require 'capybara'
+require 'open-uri'
+require 'active_support/core_ext/date'
+require 'date'
 
 class JobsController < ApplicationController
   def index
     @jobs = Job.all
   end
+
 
   def new
     Job.destroy_all

@@ -43,8 +43,8 @@ class JobSearchesController < ApplicationController
       job.description = desc
       job.date = Date.today
       job.save!
-       
     end
     redirect_to root_url
   end
 end
+

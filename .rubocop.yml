@@ -10,7 +10,7 @@ Style/GuardClause:
   - app/controllers/jobs_controller.rb
   - app/controllers/job_searches_controller.rb
 Layout/LineLength:
-  Max: 170
+  Max: 200
   Exclude:
     - spec/spec_helper.rb
     - db/seeds.rb

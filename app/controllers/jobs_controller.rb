@@ -1,10 +1,7 @@
 # frozen_string_literal: true
 
-require 'selenium-webdriver'
 require 'nokogiri'
-require 'capybara'
-require 'open-uri'
-require 'active_support/core_ext/date'
+require 'watir'
 require 'date'
 
 class JobsController < ApplicationController

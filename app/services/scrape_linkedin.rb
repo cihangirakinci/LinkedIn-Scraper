@@ -14,7 +14,10 @@ class ScrapeLinkedin
       next if Job.find_by(link: @job_links[title].attribute('href').value.split('?')[0])
       
       url = @job_links[title].attribute('href').value
-      explore = Faraday.get url
+      explore = Faraday.get(url) do |request|
+        request.headers['User-Agent'] = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.103 Safari/537.36'
+      end
+
       browser = Nokogiri::HTML.parse(explore.body)
       next unless browser.css('.show-more-less-html__markup')
       desc = browser.css('.show-more-less-html__markup').inner_html

@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 require 'nokogiri'
-require 'watir'
 require 'date'
 
 class JobsController < ApplicationController

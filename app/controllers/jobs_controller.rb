@@ -19,4 +19,9 @@ class JobsController < ApplicationController
     @job.destroy
     redirect_to root_url
   end
+
+  def delete_all
+    Job.delete_all
+    redirect_to root_url
+  end
 end

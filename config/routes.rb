@@ -2,5 +2,10 @@
 
 Rails.application.routes.draw do
   root 'jobs#index'
-  resources :jobs
+  
+  resources :jobs do
+    collection do
+      get :delete_all
+    end
+  end
 end

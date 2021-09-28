@@ -21,7 +21,7 @@ gem 'turbolinks', '~> 5'
 gem 'bootstrap', '~> 4.5.0'
 gem 'jbuilder', '~> 2.7'
 gem 'jquery-rails'
-gem 'nokogiri', '~> 1.6', '>= 1.6.8'
+gem 'nokogiri', '~> 1.12'
 gem 'watir', '~> 6.16', '>= 6.16.5'
 gem 'faraday'
 
